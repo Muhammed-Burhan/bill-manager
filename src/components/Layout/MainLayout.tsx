@@ -123,7 +123,7 @@ const MainLayout: React.FC = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        size={240}
+        width={240}
         style={{
           display: window.innerWidth >= 992 ? 'block' : 'none',
           background: colorBgContainer,

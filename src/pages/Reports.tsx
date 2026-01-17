@@ -24,8 +24,6 @@ import {
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import {
-  LineChart,
-  Line,
   BarChart,
   Bar,
   PieChart,
@@ -35,7 +33,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   AreaChart,
   Area,
@@ -239,8 +236,8 @@ const Reports: React.FC = () => {
                 <XAxis dataKey="month" stroke="#8c8c8c" />
                 <YAxis stroke="#8c8c8c" />
                 <Tooltip 
-                  formatter={(value, name) => [
-                    name === 'amount' ? `$${value.toLocaleString()}` : value,
+                  formatter={(value: any, name: any) => [
+                    name === 'amount' ? `$${value?.toLocaleString() || 0}` : value,
                     name === 'amount' ? 'Amount' : 'Bills'
                   ]}
                 />
@@ -266,7 +263,7 @@ const Reports: React.FC = () => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({category, percentage}) => `${category} ${percentage}%`}
+                  label={(entry: any) => `${entry.category} ${entry.percentage}%`}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="amount"
@@ -275,7 +272,7 @@ const Reports: React.FC = () => {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                <Tooltip formatter={(value: any) => `$${value?.toLocaleString() || 0}`} />
               </PieChart>
             </ResponsiveContainer>
             <div style={{ marginTop: '16px' }}>
@@ -301,7 +298,7 @@ const Reports: React.FC = () => {
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis dataKey="vendor" stroke="#8c8c8c" />
                 <YAxis stroke="#8c8c8c" />
-                <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                <Tooltip formatter={(value: any) => `$${value?.toLocaleString() || 0}`} />
                 <Bar dataKey="amount" fill="#52c41a" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
